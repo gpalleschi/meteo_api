@@ -332,5 +332,7 @@ See [Documentation](https://open-meteo.com/en/docs) on Open Meteo.
 }
 ```
 
+This project is licensed under the GNU GENERAL PUBLIC LICENSE 3.0 License - see the [LICENSE](LICENSE) file for details  
+
 <hr/>
 
