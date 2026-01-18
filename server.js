@@ -25,7 +25,7 @@ app.get('/meteo', async (req, res) => {
 
     let ret = await Meteo.getMeteo(req, res);
 
-    if (ret.error)  {
+    if (ret.error === true)  {
         return res.status(ret.code).json({
             msg: ret.msg,
             details: ret.details

@@ -4,17 +4,18 @@ const Constants = require('./constants');
 
 // lat  : latitude     format: decimal degrees  required: yes 
 // lon  : longitude    format: decimal degrees  required: yes
-// current_weather : include current weather data  format: boolean  required: no  default: true
 // forecast_days : number of days for the forecast (1-16)  format: integer  required: no  default: 5
 // for_cast_params : additional forecast parameters separated by comma, e.g. temperature_2m,precipitation,weathercode  format: string  required: no  default: temperature_2m
 // daily : include daily forecast data  format: boolean  required: no  default: false
 // daily_params : additional daily forecast parameters separated by comma, e.g. temperature_2m_max,temperature_2m_min,precipitation_sum  format: string  required: no  default: temperature_2m_max
+// timezone : timezone for the forecast data  format: string  required: no  default: auto
+
 
 // Example: /meteo?lat=45.07&lon=7.69&forecast_days=5&for_cast_params=temperature_2m,precipitation
 
 
 const getMeteo = async (req, res) => {
-    const {lat, lon, current_weather, forecast_days, for_cast_params, daily, daily_params} = req.query;
+    const {lat, lon, forecast_days, for_cast_params, daily, daily_params, timezone} = req.query;
     let ret = {};
 
     // Validate parameters
@@ -49,6 +50,9 @@ const getMeteo = async (req, res) => {
             }
         }
 
+        if ( timezone ) {
+            url += `&timezone=${timezone}`;
+        }
 
         try {
             //TODO: Delete examples URLs
